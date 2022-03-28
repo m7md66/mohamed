@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,6 +6,71 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+
+    var subjectObject = {
+
+      "Q1": {
+
+       "Software Fundmental": ["C", "OOP C++", "Network", "Operating Systems ","Cloud Computing ","Computer Networks ","Win & Linux"],
+
+       "php": ["PHP", "Nodejs", "HTML5", "CSS3","Bootstrap", "UXUI design basics","MYSQL Database"],
+
+       ".NET": ["C#", "ASP.Net","Angular Fundamentals","Java Script", "HTML5.0","Responsive Web Design", "Conditions"]  }
+
+       ,
+
+        "Q2": {
+
+            ".NET": ["C#", "ASP.Net","Angular Fundamentals","Java Script", "HTML5.0","Responsive Web Design"]
+        } ,
+
+        "Q3": {
+
+        ".NET": ["C#", "ASP.Net","Angular Fundamentals","Java Script", "HTML5.0","Responsive Web Design"],
+
+        "Mearn": ["Mongo", "HTML5.0","Angular Fundamentals","Java Script", "css3","Responsive Web Design"]
+    },
+    "Q4": {
+        "Software Fundmental": ["C", "OOP C++", "Network", "Operating Systems ","Cloud Computing ","Computer Networks ","Win & Linux"],
+
+        ".NET": ["C#", "ASP.Net","Angular Fundamentals","Java Script", "HTML5.0","Responsive Web Design"],
+
+        "Mearn": ["Mongo", "HTML5.0","Angular Fundamentals","Java Script", "css3","Responsive Web Design"]
+}
+                    }
+
+    window.onload = function() {
+      var subjectSel = document.getElementById("Branch");
+      var topicSel = document.getElementById("Track");
+      var chapterSel = document.getElementById("Track Courses");
+      for (var x in subjectObject) {
+        subjectSel.options[subjectSel.options.length] = new Option(x, x);
+    }
+    subjectSel.onchange = function() {
+
+    chapterSel.length = 1;
+    topicSel.length = 1;
+
+        for (var y in subjectObject[this.value]) {
+        topicSel.options[topicSel.options.length] = new Option(y, y);
+        }
+    }
+    topicSel.onchange = function() {
+
+    chapterSel.length = 1;
+
+        var z = subjectObject[subjectSel.value][this.value];
+        for (var i = 0; i < z.length; i++) {
+        chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+        }
+    }
+    }
+
+
+    </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
@@ -14,6 +80,9 @@
 </head>
 <body>
 
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-3 bg-secondary text-white">
@@ -21,74 +90,58 @@
                 <img src="/images/iti-logo.png" alt="itilogo" height="80px" width="100px">
                 <h1 class="text-center bg-danger text-white rounded-pill" style="margin: 20px">Course</h1> <hr>
                 <section class="text-center"><b>Budget Section</b></section> <hr>
+                <div class="btn-group">
                 <form>
 
                     <label><b>Program: </b></label> <br>
                     <select class="form-control-plaintext text-white" value="program">
-                        <option value="ITP">
+                        <option class="bg-secondary" value="ITP">
                             Intensive Training Program
                             <!-- ITP -->
                         </option>
-                        <option value="STP">
+                        <option class="bg-secondary" value="STP">
                             Summer Training Program
                             <!-- STP -->
                         </option>
                     </select>
 
                     <br>
-                    <label><b>Intake: </b></label> <br>
-                    <select class="form-control-plaintext text-white dropdown-toggle" value="intake">
-                        <option value="ITP 2021/2022">
-                            ITP 2021/2022
-                        </option>
-                        <option value="STP 2021/2022">
-                            STP 2021/2022
-                        </option>
-                    </select>
-
-                    <br>
                     <label><b>Branch: </b></label> <br>
-                    <select class="form-control-plaintext text-white" value="Branch">
-                        <option value="Minia">
+                    <select value="intake" class="form-control-plaintext text-white">
+                        <option selected class="bg-secondary" value="ITP 2021/2022">
                             Minia
                         </option>
                     </select>
 
                     <br>
-                    <label><b>Track: </b></label> <br>
-                    <select class="form-control-plaintext text-white" value="Track">
-                        <option value="SWF">
-                            Software Dev fundamentals
-                        </option>
-                    </select>
+
+<form name="form1" id="form1" action="/action_page.php">
+    <label><b>Intake: </b></label> <br>
+    <select name="Branch" id="Branch" class="bg-secondary form-control-plaintext text-white">
+        <option value="" selected="selected">Select Quarter</option>
+    </select>
+     <br>
+    <label><b>Track: </b></label> <br>
+    <select name="Track" id="Track" class="bg-secondary form-control-plaintext text-white">
+        <option value="" selected="selected">Select Track </option>
+     </select>
+     <br>
+    <label><b>Track Courses: </b></label> <br>
+    <select name="Track Courses" id="Track Courses" size="5" aria-label="size 3 select example" class=" bg-secondary form-control-plaintext text-white">
+         <option value="" selected="selected"> Select Course</option>
+     </select>
+     <br>
+     {{-- <input type="submit" value="Submit" >   --}}
+     </form>
 
 
-                    <div class="c1"><b>Track Courses:</b>
-                    <section>
-                        <div id="a" class="p-3 mb-2 bg-primary text-white" draggable="true" ondragstart="drag(event)">
-                            <p>SS/ITP/100</p>
-                            <p>
-                                Interviewing Skills & C.V writing
-                            </p>
-                        </div>
 
-                        <div id="b" class="p-3 mb-2 bg-primary text-white" draggable="true" ondragstart="drag(event)">
-                            <p>FL/ITP/100</p>
-                            <p>Freelancing</p>
-                        </div>
-
-                        <div id="c" class="p-3 mb-2 bg-primary text-white" draggable="true" ondragstart="drag(event)">
-                            <p>GP/ITP/100</p>
-                            <p>Graduation Project</p>
-                        </div>
-                    </section>
-                    </div>
                 </form>
             </nav>
         </div>
         <div class="col-9">
         <br />
-        <h1 class="text-center text-danger"><u> Calendar</u></h1>
+        <h1 class="text-center text-white bg-secondary rounded-pill"> Calendar</h1>
         <br />
         <div id="calendar"></div>
         </div>
