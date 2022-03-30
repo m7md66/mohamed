@@ -8,11 +8,89 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script>
+<style>
+  
+    /* Button used to open the contact form - fixed at the bottom of the page */
+    .open-button {
+      background-color: #555;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      position: fixed;
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+    }
+    
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+    
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+    
+    /* Full-width input fields */
+    .form-container input[type=text], .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+    
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+    
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom:10px;
+      opacity: 0.8;
+    }
+    
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+    
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover, .open-button:hover {
+      opacity: 1;
+    }
+    </style>
 
+<script>
+    //pop
+function closeForm() {
+
+  document.getElementById("myForm").style.display = "none";
+
+} 
+
+//pop
     var subjectObject = {
 
-      "Minia": {
+      "Q1": {
 
        "Software Fundmental": ["C", "OOP C++", "Network", "Operating Systems ","Cloud Computing ","Computer Networks ","Win & Linux"],
 
@@ -22,18 +100,25 @@
 
        ,
 
-        "Alexandria": {
+        "Q2": {
 
             ".NET": ["C#", "ASP.Net","Angular Fundamentals","Java Script", "HTML5.0","Responsive Web Design"]
-         } ,
+        } ,
 
-        "Mansoura": {
+        "Q3": {
 
         ".NET": ["C#", "ASP.Net","Angular Fundamentals","Java Script", "HTML5.0","Responsive Web Design"],
 
         "Mearn": ["Mongo", "HTML5.0","Angular Fundamentals","Java Script", "css3","Responsive Web Design"]
-    }
-                     }
+    },
+    "Q4": {
+        "Software Fundmental": ["C", "OOP C++", "Network", "Operating Systems ","Cloud Computing ","Computer Networks ","Win & Linux"],
+
+        ".NET": ["C#", "ASP.Net","Angular Fundamentals","Java Script", "HTML5.0","Responsive Web Design"],
+
+        "Mearn": ["Mongo", "HTML5.0","Angular Fundamentals","Java Script", "css3","Responsive Web Design"]
+}
+                    }
 
     window.onload = function() {
       var subjectSel = document.getElementById("Branch");
@@ -41,29 +126,30 @@
       var chapterSel = document.getElementById("Track Courses");
       for (var x in subjectObject) {
         subjectSel.options[subjectSel.options.length] = new Option(x, x);
-      }
-      subjectSel.onchange = function() {
+    }
+    subjectSel.onchange = function() {
 
-      chapterSel.length = 1;
-      topicSel.length = 1;
+    chapterSel.length = 1;
+    topicSel.length = 1;
 
         for (var y in subjectObject[this.value]) {
-          topicSel.options[topicSel.options.length] = new Option(y, y);
+        topicSel.options[topicSel.options.length] = new Option(y, y);
         }
-      }
-      topicSel.onchange = function() {
+    }
+    topicSel.onchange = function() {
 
-     chapterSel.length = 1;
+    chapterSel.length = 1;
 
         var z = subjectObject[subjectSel.value][this.value];
         for (var i = 0; i < z.length; i++) {
-          chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+        chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
         }
-      }
+    }
     }
 
 
-   </script>
+    </script>
+   
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
@@ -72,72 +158,31 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-
-
-
-
+<!-- popup window -->
+    <div class="form-popup" id="myForm">
+        <div class="form-container">
+          <h1>session</h1>
+      
+          <label for="instructor"><b>instructor:</b></label>
+          <input type="text" id="ins" name="instructor">
+      
+          <label for="course"><b>course:</b></label>
+          <input type="text" name="course" id ="course">
+      
+          <button type="button" class="btn">add</button>
+          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </div>
+      </div>
+      <!-- popup window -->
 <div class="container">
     <div class="row">
         <div class="col-3 bg-secondary text-white">
-            <nav>
-                <img src="/images/iti-logo.png" alt="itilogo" height="80px" width="100px">
-                <h1 class="text-center bg-danger text-white rounded-pill" style="margin: 20px">Course</h1> <hr>
-                <section class="text-center"><b>Budget Section</b></section> <hr>
-                <div class="btn-group">
-                <form>
-
-                    <label><b>Program: </b></label> <br>
-                    <select class="form-control-plaintext text-white" value="program">
-                        <option value="ITP">
-                            Intensive Training Program
-                            <!-- ITP -->
-                        </option>
-                        <option value="STP">
-                            Summer Training Program
-                            <!-- STP -->
-                        </option>
-                    </select>
-
-                    <br>
-                    <label><b>Intake: </b></label> <br>
-                    <select value="intake" class="form-control-plaintext text-white">
-                        <option value="ITP 2021/2022">
-                            ITP 2021/2022
-                        </option>
-                        <option value="STP 2021/2022">
-                            STP 2021/2022
-                        </option>
-                    </select>
-
-                    <br>
-
-<form name="form1" id="form1" action="/action_page.php">
-    <label><b>Branch: </b></label> <br>
-    <select name="Branch" id="Branch" class="form-control-plaintext text-white">
-        <option value="" selected="selected">Select Branch</option>
-    </select>
-     <br>
-    <label><b>Track: </b></label> <br>
-    <select name="Track" id="Track" class="form-control-plaintext text-white">
-        <option value="" selected="selected">Select Track </option>
-     </select>
-     <br>
-    <label><b>ITrack Courses: </b></label> <br>
-    <select name="Track Courses" id="Track Courses" class="form-control-plaintext text-white">
-         <option value="" selected="selected"> Select Course</option>
-     </select>
-     <br>
-     {{-- <input type="submit" value="Submit" >   --}}
-     </form>
-
-
-
-                </form>
-            </nav>
+@yield('name')
         </div>
         <div class="col-9">
         <br />
-        <h1 class="text-center text-danger"><u> Calendar</u></h1>
+       
+        <h1 class="text-center text-white bg-secondary rounded-pill"> Calendar</h1>
         <br />
         <div id="calendar"></div>
         </div>
@@ -167,7 +212,12 @@ $(document).ready(function () {
         selectHelper: true,
         select:function(start, end, allDay)
         {
-            var title = prompt('Event Title:');
+           // var title = prompt('Event Title:');
+           var titl=document.getElementById("ins").value;
+           var tit=document.getElementById("course").value;
+           document.getElementById("myForm").style.display = "block";
+           var title =titl+tit ;
+          
 
             if(title)
             {

@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Track extends Model
 {
+    use HasFactory;
 
+    
+    
+    
     public function courses()
     {
-        return $this->belongsToMany(course::class);
+        return $this->belongsToMany(Course::class);
     }
-    use HasFactory;
 }
-
-

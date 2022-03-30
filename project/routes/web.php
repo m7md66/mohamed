@@ -14,14 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('sidebar');
+});
+Route::get('/view', function () {
+    return view('sidebar');
 });
 Route::get('full-calender', 'App\Http\Controllers\FullCalenderController@index');
 
 Route::post('full-calender/action', 'App\Http\Controllers\FullCalenderController@action');
-Route::get('course/create', 'FullCalenderController@create')->name('course.create');
-Route::get('instructor/create', 'FullCalenderController@create')->name('instructor.create');
-Route::get('track/create', 'FullCalenderController@create')->name('track.create');
-Route::get('session/create', 'FullCalenderController@create')->name('session.create');
 
 ?>

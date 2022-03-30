@@ -20,9 +20,7 @@
         </style>
     </head>
     <body class="antialiased">
-        <h1>ggggggggggggg</h1>
-       <div> 
-           @yield('name')
-        </div>
+        <h1>view</h1>
+        @yield('name')
     </body>
 </html>
