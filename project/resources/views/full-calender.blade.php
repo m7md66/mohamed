@@ -12,7 +12,7 @@
 
     var subjectObject = {
 
-      "Q1": {
+      "Minia": {
 
        "Software Fundmental": ["C", "OOP C++", "Network", "Operating Systems ","Cloud Computing ","Computer Networks ","Win & Linux"],
 
@@ -22,25 +22,18 @@
 
        ,
 
-        "Q2": {
+        "Alexandria": {
 
             ".NET": ["C#", "ASP.Net","Angular Fundamentals","Java Script", "HTML5.0","Responsive Web Design"]
-        } ,
+         } ,
 
-        "Q3": {
-
-        ".NET": ["C#", "ASP.Net","Angular Fundamentals","Java Script", "HTML5.0","Responsive Web Design"],
-
-        "Mearn": ["Mongo", "HTML5.0","Angular Fundamentals","Java Script", "css3","Responsive Web Design"]
-    },
-    "Q4": {
-        "Software Fundmental": ["C", "OOP C++", "Network", "Operating Systems ","Cloud Computing ","Computer Networks ","Win & Linux"],
+        "Mansoura": {
 
         ".NET": ["C#", "ASP.Net","Angular Fundamentals","Java Script", "HTML5.0","Responsive Web Design"],
 
         "Mearn": ["Mongo", "HTML5.0","Angular Fundamentals","Java Script", "css3","Responsive Web Design"]
-}
-                    }
+    }
+                     }
 
     window.onload = function() {
       var subjectSel = document.getElementById("Branch");
@@ -48,29 +41,29 @@
       var chapterSel = document.getElementById("Track Courses");
       for (var x in subjectObject) {
         subjectSel.options[subjectSel.options.length] = new Option(x, x);
-    }
-    subjectSel.onchange = function() {
+      }
+      subjectSel.onchange = function() {
 
-    chapterSel.length = 1;
-    topicSel.length = 1;
+      chapterSel.length = 1;
+      topicSel.length = 1;
 
         for (var y in subjectObject[this.value]) {
-        topicSel.options[topicSel.options.length] = new Option(y, y);
+          topicSel.options[topicSel.options.length] = new Option(y, y);
         }
-    }
-    topicSel.onchange = function() {
+      }
+      topicSel.onchange = function() {
 
-    chapterSel.length = 1;
+     chapterSel.length = 1;
 
         var z = subjectObject[subjectSel.value][this.value];
         for (var i = 0; i < z.length; i++) {
-        chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+          chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
         }
-    }
+      }
     }
 
 
-    </script>
+   </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
@@ -95,39 +88,42 @@
 
                     <label><b>Program: </b></label> <br>
                     <select class="form-control-plaintext text-white" value="program">
-                        <option class="bg-secondary" value="ITP">
+                        <option value="ITP">
                             Intensive Training Program
                             <!-- ITP -->
                         </option>
-                        <option class="bg-secondary" value="STP">
+                        <option value="STP">
                             Summer Training Program
                             <!-- STP -->
                         </option>
                     </select>
 
                     <br>
-                    <label><b>Branch: </b></label> <br>
+                    <label><b>Intake: </b></label> <br>
                     <select value="intake" class="form-control-plaintext text-white">
-                        <option selected class="bg-secondary" value="ITP 2021/2022">
-                            Minia
+                        <option value="ITP 2021/2022">
+                            ITP 2021/2022
+                        </option>
+                        <option value="STP 2021/2022">
+                            STP 2021/2022
                         </option>
                     </select>
 
                     <br>
 
 <form name="form1" id="form1" action="/action_page.php">
-    <label><b>Intake: </b></label> <br>
-    <select name="Branch" id="Branch" class="bg-secondary form-control-plaintext text-white">
-        <option value="" selected="selected">Select Quarter</option>
+    <label><b>Branch: </b></label> <br>
+    <select name="Branch" id="Branch" class="form-control-plaintext text-white">
+        <option value="" selected="selected">Select Branch</option>
     </select>
      <br>
     <label><b>Track: </b></label> <br>
-    <select name="Track" id="Track" class="bg-secondary form-control-plaintext text-white">
+    <select name="Track" id="Track" class="form-control-plaintext text-white">
         <option value="" selected="selected">Select Track </option>
      </select>
      <br>
-    <label><b>Track Courses: </b></label> <br>
-    <select name="Track Courses" id="Track Courses" size="5" aria-label="size 3 select example" class=" bg-secondary form-control-plaintext text-white">
+    <label><b>ITrack Courses: </b></label> <br>
+    <select name="Track Courses" id="Track Courses" class="form-control-plaintext text-white">
          <option value="" selected="selected"> Select Course</option>
      </select>
      <br>
@@ -141,7 +137,7 @@
         </div>
         <div class="col-9">
         <br />
-        <h1 class="text-center text-white bg-secondary rounded-pill"> Calendar</h1>
+        <h1 class="text-center text-danger"><u> Calendar</u></h1>
         <br />
         <div id="calendar"></div>
         </div>
